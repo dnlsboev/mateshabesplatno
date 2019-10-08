@@ -29,11 +29,6 @@
 \newcommand{\mcl}[1]{\mathcal{#1}}
 \newcommand{\mfrk}[1]{\mathfrak{#1}}
 
-\newcommand{\mylim}[1]{\lim\limits_{#1 \to \infty}}
-\newcommand{\mysum}[3]{\sum\limits_{#1 = #2}^#3}
-\newcommand{\mysup}[1]{\underset{#1 \in \mbb N}{\sup}}
-\newcommand{\myinf}[1]{\underset{#1 \in \mbb N}{\inf}}
-
 %теоремы и тд с двойной нумерацией
 \theoremstyle{plain}
 \newtheorem{theorem}{Теорема}[chapter]
@@ -41,6 +36,7 @@
 \newtheorem{corollary}[theorem]{Следствие}
 \newtheorem{statement}[theorem]{Утверждение}
 \newtheorem{remark}[theorem]{Замечание}
+\newtheorem{example}{Пример}[chapter]
 
 \theoremstyle{definition}
 \newtheorem{mdef}{Определение}[chapter]
@@ -172,8 +168,9 @@
 		
 		Аналогичное определение:
 		$$
-			f(a+h)=f(a)+\mcl L \left< h \right> + o(\|h\|).
+			f(a+h)=f(a)+\mcl L \left< h \right> + o(\|h\|),
 		$$
+		где $\mcl L$ -- линейное отображение.
 		
 		Нетрудно понять, что $\mcl L \left< h\right> = d f(a) \left< h \right>$ и 
 		$$
@@ -280,9 +277,128 @@
 	
 	
 	\section{Производные высших порядков}
-	
-	\section{Формула Тейлора}
+	\begin{mdef}
+		Функция $f$ $k$-раз дифференцируема в точке $a \in \mcl D$, если любая $n$-ая частная производная, где $n=1,\ldots,k-1$, дифференцируема в точке $a \in \mcl D$.
+	\end{mdef}
+	\begin{remark}
+		Используют также понятие гладкости функции $f$. 
+		
+		Функция $f$ класса $\mcl C^r$ в точке $a\in \mcl D$, если каждая ее $k$-ая производная, где $k=1,\ldots,r$, непрерывна.
+		
+		По достаточному условию дифференцируемости, функция $f \in D^{r}$.
+	\end{remark}
 
+	\begin{theorem}\label{th1}
+		Пусть $u = f(x,y) \in D^2(M_0)$, $M_0 = (x_0, y_0) \in U$ и $M_0$ -- внутренняя точка $U$.
+		Тогда
+		$$
+		\frac {\partial^2 u(M_0)} {\partial x \partial y} = \frac {\partial^2 u(M_0)} {\partial y \partial x}.
+		$$
+	\end{theorem}
+
+	\begin{theorem}
+		Пусть $f\colon U \to \mbb R^2$ в некоторой окрестности точки $M_0 = (x_0, y_0)$ имеет частные производные $f'_x, f'_y$, $f''_{xy}, f''_{yx}$ и при этом вторые производные непрерывны в $M_0$.
+		Тогда
+		$$
+		f''_{xy}(M_0) = f''_{yx}(M_0).
+		$$
+	\end{theorem}
+
+	\begin{corollary}
+		Пусть $u = f(x_1, \ldots, x_n)$ -- $m$-раз дифференцируемая функция в точке $M_0$, при этом $M_0 = (x_1^0, \ldots, x_n^0)$.
+		Тогда в точке $M_0$ любые смешанные производные равны, то есть
+		$$
+		\frac {\partial^k f(M_0)} {\partial x_{\pi(1)} \ldots \partial x_{\pi(k)}} = \frac {\partial^k f(M_0)} {\partial x_{\sigma(1)} \ldots \partial x_{\sigma(k)}},
+		$$
+		где $\pi, \sigma \in \mbb S_k$ такие, что $\pi \not= \sigma$.
+	\end{corollary}
+	\section{Формула Тейлора}
+	\begin{mdef}
+		Определим понятие мультииндекса.
+		
+		$$
+			\alpha = (\alpha_1, \ldots, \alpha_n),
+		$$
+		где $\alpha_i \in \mbb N_{\ge 0}$ для всех $i \in \mbb N$.
+		
+		Так же определим следующие операции:
+		\begin{align*}
+			&\alpha! = \alpha_1!\dots \alpha_n!,\\
+			&|\alpha| = \sum\limits_{k=1}^n \alpha_k,\\
+			&\text{Пусть $h \in \mcl V: h = (h_1, \ldots, h_n)^T$, то } h^{\alpha} = \prod \limits_{i=1}^n h_i^{\alpha_i}. 
+		\end{align*}
+		
+		Удобство мультииндекса заключается в компактности обозначений. Далее под 
+		$$
+			\cfrac {\partial^{\alpha}f} {\partial x^{\alpha}}
+		$$	
+		будем подразумевать
+		$$
+			\cfrac {\partial^{\alpha_1}} {\partial x_1^{\alpha_1}} \left(\cfrac {\partial^{\alpha_2}} {\partial x_2^{\alpha_2}}\dots \left(\cfrac {\partial^{\alpha_n}f} {\partial x_n^{\alpha_n}}\right)\dots\right).
+		$$
+	\end{mdef}
+
+	\begin{theorem}
+		$$
+			(x_1 + \ldots + x_n)^k = \sum \limits_{\substack{\alpha_i \ge 0,\ i=1,\ldots,n \\ \alpha_1+\dots\alpha_n=k}} \cfrac {|\alpha|!}{\alpha!} \prod\limits_{i=1}^n x_i^{\alpha_i}.
+		$$
+	\end{theorem}
+
+	\begin{example}
+		Обозначим за $\mfrk D$ следующее отображение:
+		$$
+			\mfrk D = \sum\limits_{i=1}^n h_i \cfrac {\partial} {\partial x_i},
+		$$
+		где $h_i$ -- $i$-ая компонента фиксированного вектора $h = (h_1, \ldots, h_n)^T$.
+		
+		Если функция $f \in D^k$, то 
+		\begin{multline*}
+			\mfrk{D}^k f = \left( \sum\limits_{i=1}^n h_i \cfrac{\partial} {\partial x_i} \right)^k f =\\
+			= \left( \sum\limits_{\substack{\alpha_i \ge 0,\ i=1,\ldots,n \\ \alpha_1+\dots\alpha_n=k}} \cfrac {k!}{\alpha_1!\dots \alpha_n!} \prod\limits_{i=1}^n h_i^{\alpha_i}\cfrac {\partial^{\alpha_i}}{\partial x_i^{\alpha_i}} \right)f =\\
+			= \left(\sum\limits_{|\alpha|=k} \cfrac{|\alpha|!}{\alpha!} h^{\alpha} \cfrac {\partial^{\alpha}}{\partial x^{\alpha}}\right) f.
+		\end{multline*}
+	\end{example}
+
+	\begin{theorem}[Формула Тейлора с остаточным членом в форме Пеано]
+		Пусть $f\in D^k(a)$, где $a\in U \subset \mbb R^n$.
+		
+		Тогда
+		$$
+			f(a+h) = \sum\limits_{i=0}^k \left( \sum\limits_{|\alpha|=i} \cfrac {1}{\alpha!}  \cfrac {\partial^\alpha f(a)}{\partial x^\alpha} h^\alpha\right) + o(\|h\|^k),
+		$$
+		
+		где $o(\|h\|^k) \to 0$ при $\|h\|\to 0$.
+	\end{theorem}
+
+	\begin{mdef}
+		$
+		\sum\limits_{i=0}^k \left( \sum\limits_{|\alpha|=i} \cfrac {1}{\alpha!}  \cfrac {\partial^\alpha f(a)}{\partial x^\alpha} h^\alpha\right)
+		$ -- полином Тейлора порядка $k$ в точке $a\in U$ функции $f\in D^k(a)$.
+	\end{mdef}
+
+	\begin{lemma}
+		$h^\alpha = o(\|h\|^k)$ при $\|h\|\to0$ тогда и только тогда, когда $k < |\alpha|$.
+	\end{lemma}
+
+	\begin{theorem}[Единственность полинома Тейлора]
+		Пусть существует полином 
+		$$
+			P = \sum \limits_{i=0}^k \sum\limits_{|\alpha|=i} P_\alpha h^\alpha
+		$$
+		такой, что 
+		$$
+			f(a+h) - P = o(\|h\|^k)
+		$$ при $\|h\|\to 0$.
+		
+		Тогда $P$ -- полином Тейлора.
+	\end{theorem}
+	
+	\begin{corollary}
+		Пусть $f\in D^k(a)$ и $$\cfrac {\partial^\alpha f(a)} {\partial x^\alpha} = 0$$ при $|\alpha| \le k$.
+		
+		Тогда $f(a+h) = o(\|h\|^k)$ при $\|h\|\to0$.
+	\end{corollary}
+	
 	\section{Дифференциалы высших порядков}
 	
 	\section{Экстремумы функций нескольких переменных}
