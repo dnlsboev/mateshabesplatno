@@ -1,0 +1,109 @@
+\chapter{Нормированные векторные пространства}	
+	\begin{mdef}
+		$\mcl V$ -- в. п-во над $\mbb R$, если
+		\begin{align}
+			&\forall x, y \in \mcl V \ x+y = y+x, \tag{\text{ВП.1}}\\
+			&\forall x,y, z \in \mcl V \ (x+y)+z=x+(y+z), \tag{\text{ВП.2}}\\
+			&\exists \vec 0\ \forall x \in \mcl V\ \vec 0 + x = x + \vec 0 = x, \tag{\text{ВП.3}}\\
+			&\forall x \in \mcl V\ \exists -x \in \mcl V: \ x+(-x) = \vec 0, \tag{\text{ВП.4}}\\
+			&\forall \alpha, \beta \in \mbb R\ \forall x \in \mcl V \ (\alpha+\beta)x = \alpha x+\beta x, \tag{\text{ВП.5}}\\
+			&\forall \alpha, \beta \in \mbb R\ \forall x \in \mcl V\ (\alpha \beta) x = \alpha ( \beta x), \tag{\text{ВП.6}}\\
+			&\forall \alpha \in \mbb R \ \forall x, y\in \mcl V\ \alpha(x+y) = \alpha x + \alpha y, \tag{\text{ВП.7}}\\
+			&\exists 1 \in \mbb R \ \forall x \in \mcl V \ 1\cdot x = x. \tag{\text{ВП.8}}
+		\end{align}
+	\end{mdef}
+	\begin{mdef}
+		$\|\cdot\| \colon \mcl V \to \mbb R_{\ge 0}$ -- норма, если
+		\begin{align}
+			&\forall x\in \mcl V\ \|x\| \ge 0, \tag{\text{Н.1}}\\
+			&\forall x, y \in \mcl V\ \|x+y\| \le \|x\|+\|y\|, \tag{\text{Н.2}}\\
+			&\forall \alpha \in \mbb R \ \forall x \in \mcl V\ \|\alpha x \| = |\alpha|\|x\|, \tag{\text{Н.3}}\\
+			&\|x\|=0 \Leftrightarrow x = \vec 0. \tag{\text{Н.4}}
+		\end{align}
+	\end{mdef}
+	
+	\begin{remark}
+		На нормированном в. п-ве можно определить метрику следующим образом:
+		$$
+			\rho(x, y) = \|x-y\|.
+		$$	
+		
+		И это действительно будет метрикой.
+	\end{remark}
+
+	\begin{mdef}
+		Банахово пространство -- полное (относительно метрики из предыдущего замечания) нормированное векторное пространство.
+	\end{mdef}
+
+	\begin{mdef}
+		$\left( \cdot, \cdot \right)\colon \mcl V \times \mcl V \to \mbb R$ -- скалярное произведение, если 
+		\begin{align}
+			&\forall x \in \mcl V\ (x, x) \ge 0, \tag{\text{СП.1}}\\
+			&\forall x,y \in \mcl V \ (x,y) = (y,x), \tag{\text{СП.2}}\\
+			&\forall \alpha, \beta \in \mbb R \ \forall x,y, z \in \mcl V\ (\alpha x + \beta y, z) = (\alpha x, z) + (\beta y, z), \tag{\text{СП.3}}\\
+			&(x,x) = 0 \Leftrightarrow x = \vec 0. \tag{\text{СП.4}}
+		\end{align}
+	\end{mdef}
+
+	\begin{mdef}
+		Если $\mcl V$ -- в. пр-во и $(\cdot, \cdot)$ -- скалярное произведение, то $\left(\mcl V, (\cdot, \cdot)\right)$ -- евклидово пространство.
+	\end{mdef}
+
+	\begin{statement}
+		В евклидовом пространстве можно ввести норму следующим образом:
+		$$
+			\|x\| = \sqrt{(x, x)}.
+		$$
+	\end{statement}
+
+	\begin{mdef}
+		Две нормы $\|\cdot\|_1$ и $\|\cdot\|_2$ билипшицево эквивалентны, если 
+		$$
+			\exists C > 0:\  \cfrac 1 C \|x\|_1 \le \|x\|_2 \le C \|x\|_1, \quad \forall x \in \mcl V 
+		$$
+	\end{mdef}
+
+	\begin{theorem}
+		Все нормы в $\mbb R ^n$ билипшицево эквивалентны.
+	\end{theorem}
+	\begin{corollary}
+		Последовательность точек
+		\begin{equation*}
+			v^m = \begin{pmatrix}
+			v^m_1 \\
+			\vdots \\
+			v^m_n
+			\end{pmatrix}
+		\end{equation*}
+		сходится к точке 
+		\begin{equation*}
+			u = \begin{pmatrix}
+				u_1 \\
+				\vdots \\
+				u_n
+			\end{pmatrix}
+		\end{equation*} 
+		при $m\to\infty$ тогда и только тогда, когда $v_i^m \underset{m \to \infty}{\longrightarrow} u_i$ для всех $i=1,\ldots, n$.
+	\end{corollary}
+
+	\begin{mdef}
+		Введем понятие отображения $F \colon \mbb R^n \to \mbb R^m$.
+		$$
+			F(x) = 	\begin{pmatrix}
+				f_1(x) \\
+				\vdots \\
+				f_m(x)
+			\end{pmatrix},
+		$$ где $x \in U$ и $U$ -- область в $\mbb R^n$.
+	\end{mdef}
+	\begin{corollary}
+		$$\lim \limits_{x\to a} F(x) = u \Leftrightarrow \lim\limits_{\eta \to a_i} f_i(\eta) = u_i \quad \text{для всех $i=1,\ldots, m$,} $$
+	\end{corollary}
+	где 
+	$$
+		u = \begin{pmatrix}
+			u_1\\
+			\vdots\\
+			u_n
+		\end{pmatrix}.
+	$$

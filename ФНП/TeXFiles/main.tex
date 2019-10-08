@@ -1,0 +1,74 @@
+%настройка документа
+\documentclass[oneside, final]{book}
+\usepackage[14pt]{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\frenchspacing
+
+\binoppenalty=10000 
+\relpenalty=10000 
+
+%настройка страницы
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{1cm}{1cm}{0pt}{13mm}
+
+%настройка переносов и красной строки
+\usepackage{indentfirst}
+\sloppy
+%\fussy
+
+%пакеты AMS
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%дополнительные команды
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\mfrk}[1]{\mathfrak{#1}}
+
+%теоремы и тд с двойной нумерацией
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{corollary}[theorem]{Следствие}
+\newtheorem{statement}[theorem]{Утверждение}
+\newtheorem{remark}[theorem]{Замечание}
+\newtheorem{example}{Пример}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{mdef}{Определение}[chapter]
+
+%окружение доказательства
+\newenvironment{Proof}[1][Доказательство] % имя окружения 
+{\par\noindent{\bf #1. }} % команды для \begin 
+{\hfill $\scriptstyle\qed$} % команды для \end 
+
+\title{\textbf{Функции нескольких переменных}\\ Основные теоремы (без доказательств)}
+\author{Математический анализ, 3 семестр}
+\date{ММФ НГУ\\ \vfill2019 год}
+
+\begin{document}
+	\maketitle
+
+	\tableofcontents
+	
+	\input vs
+
+	\input ffv
+		
+	\input manifolds
+	
+	\begin{thebibliography}{0}
+		\bibitem{Greshnov} А.\,В.~Грешнов, Лекции по математическому анализу, 3 семестр, ММФ НГУ.
+		\bibitem{Potapov} В.\,Н.~Потапов, Электронные лекции по математическому анализу, ММФ НГУ.
+		\bibitem{Vodopyanov} С.\,К.~Водопьянов, Дифференциальное исчисление функций многих переменных, ММФ НГУ.
+		\bibitem{Reshet} Ю.\,Г.~Решетняк, Курс математического анализа.
+		\bibitem{Rudin} У.~Рудин, Основы математического анализа.
+		\bibitem{Dedonne} Ж.~Дьедонне, Основы современного анализа.
+		\bibitem{Spivak} М.~Спивак, Математический анализ на многобразиях.
+		\bibitem{Postnikov} М.\,М.~Постников, Лекции по геометрии. Семестр III. Гладкие многообразия.
+	\end{thebibliography}
+\end{document}
