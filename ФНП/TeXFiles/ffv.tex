@@ -94,10 +94,8 @@
 		$$
 		и понятие Якобиана отображения в точке $a \in U$:
 		$$
-			\mcl J = \left|  \cfrac {\partial f(a)} {\partial(x_1, \ldots, x_n)}  \right|.
+			\mcl J_f(a) = \left|  \cfrac {\partial f(a)} {\partial(x_1, \ldots, x_n)}  \right|.
 		$$
-	
-		Тогда $df(a) = \cfrac {\partial f(a)} {\partial(x_1, \ldots, x_n)}$.
 	\end{mdef}
 	
 	\begin{theorem}
@@ -241,10 +239,94 @@
 	\end{corollary}
 	
 	\section{Дифференциалы высших порядков}
+	Пусть $f = f(x_1, \ldots, x_n)$ -- дифференцируемая функция.
+	Тогда дифференциал функции $f$ имеет вид
+	$$
+		df = \cfrac {\partial f} {\partial x_1} dx_1 + \dots + \cfrac {\partial f} {\partial x_n}.	
+	$$
+	
+	Обозначим за $\delta$ приращение.
+	\begin{mdef}
+		Значение $\delta(df)$ при $\delta x_i = dx_i$ для всех $i = 1,\ldots,n$ называется вторым дифференциалом функции $f$ и обозначается $d^2 f$.
+		$$
+			d^2 f = \delta \left. \left( \sum \limits_{i=1}^n \cfrac {\partial f}{\partial x_i}dx_i \right) \right|_{\substack{\delta x_i = dx_i, \\ i = 1,\ldots, n}}
+		$$ 	
+	\end{mdef}
+	\begin{mdef}
+		$k$-кратный дифференциал функции $f$ определяется следующим образом:
+		$$
+			\left.\delta(d^{k-1}f)\right|_{\substack{\delta x_i = dx_i, \\ i = 1,\ldots, n}} = d^k f.
+		$$
+	\end{mdef}
+
+	\begin{theorem}
+		Пусть функция $f=f(x_1, \ldots, x_n)$ дважды дифференцируема, тогда ее второй дифференциал имеет вид
+		\begin{enumerate}
+			\item Если $x_1, \ldots, x_n$ -- независимые переменные, то
+			$$
+				d^2f = \sum\limits_{i=1}^n \sum\limits_{j=1}^n \cfrac {\partial^2 f} {\partial x_j \partial x_i} dx_j dx_i.
+			$$
+			\item Если $x_i = x_i(\xi_1, \ldots, \xi_m)$ для всех $i = 1,\ldots, n$ дважды дифференцируемые функции, и $f(x_1, \ldots, x_n)$ -- дважды дифференцируемая функция, тогда
+			$$
+				d^2 f = \sum\limits_{i=1}^n \sum\limits_{j=1}^n \cfrac {\partial^2 f} {\partial x_j \partial x_i} dx_j dx_i +  \sum\limits_{k=1}^n \cfrac {\partial f} {\partial x_k} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \cfrac {\partial^2 x_k} {\partial \xi_j \partial \xi_i} d\xi_j d\xi_i,
+			$$ в более компактной форме:
+			$$
+				d^2 f = \left(\cfrac {\partial f} {\partial x_1} dx_1 + \dots +\cfrac {\partial f} {\partial x_n} dx_n\right)^2 + \sum \limits_{k=1}^n \cfrac {\partial f} {\partial x_k} d^2 x_k.
+			$$
+		\end{enumerate}
+	\end{theorem}
+	\begin{remark}
+		Второй дифференциал функции $f$ от независимых переменных $x_1, \ldots, x_n$ $$d^2 f = \left(\cfrac {\partial f} {\partial x_1} dx_1 + \dots +\cfrac {\partial f} {\partial x_n} dx_n\right)^2$$ является симметричной квадратичной формой.
+	\end{remark}
+
+	\begin{statement} Пусть функция $f\colon U \to \mbb R$ $k$ раз дифференцируема в точке $a\in U$. Тогда 
+		$$
+		d^k f(a) = \sum_{\left| \alpha \right| = k} \cfrac{k!}{\alpha!} \cfrac{ \partial^{\left| \alpha \right|}f}{\partial x^{\alpha}}(a)(dx)^{\alpha}, \quad \text{где $(dx)^{\alpha} = (d{x_1})^{\alpha_1} \cdots (d{x_n})^{\alpha_n}$}
+		$$
+	\end{statement}
+	
+	\begin{corollary} Пусть функция $f\colon U \to \mbb R$ $k$ раз дифференцируема в точке $a\in U$. Тогда
+		$$
+		f(a+h) = f(a) + \cfrac 1 {1!}d f(a)\left< h\right> + \cfrac1 {2!} d^2 f(a) {\left< h \right>}^2 + \dots + \cfrac1{k!} d^k f(a) {\left< h \right>}^k + o(\| h \|^k)
+		$$
+	\end{corollary}
 	
 	\section{Экстремумы функций нескольких переменных}
 	
 	\section{Теорема о неявной функции}
+	Для функции $F\colon U \to \mbb{R}^m$, где $U\subset \mbb{R}^{n+m} = \mbb{R}^n \times \mbb{R}^m$, то есть запись $(a, b) \in U$ означает, что $a\in \mbb R^n$, $b \in \mbb R^m$.
+	Определим $F_a\colon U_a \to \mbb R^m$, где $U_a = \{y\in\mbb R^m\mid (a,y)\in U\}$, то есть $F_a(y) = F(a,y)$ и $F_b\colon U_b \to \mbb R^m$ аналогично ($F_b(x) = F(x, b)$).
+	
+	\begin{theorem}[О неявной функции]
+		Пусть $F\colon U \to \mbb{R}^m$, где $U\subset \mbb{R}^{n+m}$, $U\in \mcl N[(a,b)]$ -- некоторая окрестность точки $(a,b)$. 
+		
+		Если выполнены следующие условия:
+		\begin{enumerate}
+			\item $F(a,b)=0$,
+			\item \label{cond1} $F\in \mcl C^1 [(a,b)]$, то есть $F$ непрерывно дифференцируема в некоторой окрестности точки $(a,b)$,
+			\item $dF_a(b)$ -- невырожденный оператор ($\det(dF_a(b))\not= 0$),
+		\end{enumerate}
+		то найдутся окрестности $V \in \mcl N(a)$, $V \subset \mbb R^n$, и $W \in \mcl N(b)$, $W \subset \mbb R^m$, и функция $f\colon V \to\mbb R^m$, $f\in\mcl D(V)$, что
+		\begin{enumerate}
+			\item $F(x,y) = 0 \Longleftrightarrow y=f(x)$ для $x\in V, y \in W$,
+			\item $df(x) = - (dF_x(y))^{-1}dF_y(x)$, где $y = f(x)$.
+		\end{enumerate}
+	\end{theorem}	
+
+	\begin{corollary}[О гладкости неявной функции]
+		Если при выполнении условий теоремы о неявной функции потребовать, что бы $F\in\mcl C^r[(a,b)]$, то и неявная функция $f$ будет принадлежать классу $\mcl C^r$ в области определения $V$.
+	\end{corollary}
+
+	\begin{corollary}[Теорема об обратной функции]
+		Пусть $f\colon U \to \mbb R^n$, $U\subset \mbb R^n$, $U \in \mcl N (b)$, $b\in \mbb R^n$. 
+		
+		Если верно, что 
+		\begin{enumerate}
+			\item $f\in \mcl C^1(b)$,
+			\item $df(b)$ -- невырожденный оператор,
+		\end{enumerate}
+		то найдется $V\in \mcl N(f(b))$, $V \subset \mbb R^n$ в которой определена обратная функция $f^{-1}\colon V \to U$ такая, что $f^{-1}\in \mcl D(V)$ и $df^{-1}(x) = (df(y))^{-1}$, где $x=f(y)$.
+	\end{corollary}
 	
 	\section{Диффеоморфизмы}
 	

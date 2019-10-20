@@ -1,4 +1,193 @@
 \chapter{Многообразия}
-	\section{Способы задания многообразий}
+	\section{Определения и способы задания многообразий}
+	\begin{mdef}
+		$M \subset \mbb R^n$ -- $k$-мерное многообразие без края класса $\mcl C^r$, если
+		Существует диффеоморфизм класса $\mcl C^r$ 
+		$$\varphi\colon (-1, 1)^n \to \mbb R^n$$ 
+		такой, что $\varphi\left( (-1, 1)^k \times 0^{n-k} \right) = M$.
+	\end{mdef}
+	\begin{mdef}
+		$M \subset \mbb R^n$ -- $k$-мерное многообразие с краем класса $\mcl C^r$, если
+		Существует диффеоморфизм класса $\mcl C^r$ 
+		$$\varphi\colon (-1, 1)^n \to \mbb R^n$$ 
+		такой, что $\varphi\left( (-1, 1)^{k-1} \times [0, 1) \times 0^{n-k} \right) = M$.
+	\end{mdef}
+
+	\begin{mdef}
+		Сужение диффеоморфизма $\varphi\colon (-1, 1)^n \to \mbb R^n$ следующим образом:
+		$$
+			\widetilde{\varphi}\colon (-1, 1)^k \to \mbb R^n
+		$$
+		и $\widetilde{\varphi}(t_1, \ldots, t_k) = \varphi(t_1, \ldots, t_k, \underbrace{0, \ldots, 0}_{n-k})$ называется параметризацией элементарного многообразия.
+	\end{mdef}
+	
+	\begin{mdef}
+		$M \subset \mbb R^n$ -- $k$-мерное многообразие без края (с краем), если 
+		$$
+			\forall x \in M \ \exists U \in \mcl N(x): \ U \cap M \text{ -- элементарное многообразие без края (с краем)}.
+		$$	
+	\end{mdef}
+	\begin{remark}
+	Дальнейшие факты приводятся для многообразий без края.
+	\end{remark}
+	\begin{theorem}
+		Если $\forall x \in M\ \exists U \in \mcl N(x)$ и $F\colon U \to \mbb R^n$ -- $\mcl C^r$ гладкий диффеоморфизм такой, что $F(U\cap M) = F(U) \cap (\mbb R^k \times 0^{n-k})$.
+		
+		Тогда $M$ -- $k$-мерное многообразие.
+	\end{theorem} 
+	
+	\begin{theorem}
+		$f\colon U \to \mbb R^m$, где $U \subset \mbb R^n$ -- открытое множество, $f\in \mcl C^r$ и $\forall a\in U \ \text{rank\,} f(a) = k$.
+		
+		Тогда $M = \{x \in \mbb R^n \mid f(x) = 0\}$ -- $\mcl C^r$ гладкое $(n-k)$-мерное многообразие.
+	\end{theorem}
+
+	\begin{corollary}
+		Пусть $f(x,y,z)=0$, $f \in \mcl C^r$ и $df(a) \not= 0$. Тогда $M = {(x,y,z)\in \mbb R^3 \mid f(x,y,z) = 0}$ -- $\mcl C^r$ гладкое двумерное многообразие в некоторой окрестности точки $a$.
+	\end{corollary}
+
+	\begin{theorem}
+		Пусть $e\colon U \to \mbb R^n$, где $U \subset \mbb R^k$, отображение класса $\mcl C^r$ и $\text{rank\,}f = k$ в любой точке $U$.
+		
+		Тогда $y(U)$ -- $k$-мерное $\mcl C^r$ гладкое многообразие. 
+	\end{theorem}
+
 	\section{Касательные векторы и пространства, нормальные подпространства}
+	\subsection{Касательные векторы и пространства}
+	\begin{mdef}
+		Пусть $\gamma(t)$-- некоторая гладкая параметризированная кривая.
+		
+		Определим касательный вектор к $\gamma$ в точке $t_0$ следующим образом:
+		$$
+			\dot \gamma (t_0) = \lim \limits_{t\to t_0} \cfrac {\gamma(t) - \gamma(t_0)} {t - t_0}.
+		$$
+	\end{mdef}
+	\begin{mdef}
+		$\vec v \in \mbb R^n$ -- Касательный вектор к множеству $M$ в точке $a\in M$, если найдется $\varepsilon >0$ и гладкая кривая $\gamma\colon (-\varepsilon, \varepsilon) \to M$ такая, что $\gamma(0) = a$, и при этом $\dot \gamma(0) = \vec v$. 
+		
+		Совокупность всех касательных векторов к множеству $M$ в точке $a\in M$ будем обозначать $T_a(M)$.
+	\end{mdef}
+	\begin{remark}
+		Аффинное подпространство $a+T_a(M)$ называется контингенцией.
+	\end{remark}
+	\begin{statement}
+		Контингенция любого аффинного подпространства $\mcl{A} \subset \mbb R^n$ в любой его точке совпадает с $\mcl{A}$.
+	\end{statement}	
+	\begin{statement}
+		Пусть $M$ -- элементарное $k$-мерное $\mcl C^r$ гладкое многообразие, то есть $M = \varphi((-1, 1)^k \times 0^{n-k})$, где $\varphi$ -- некоторый $\mcl C^r$ гладкий диффеоморфизм, и $a \in (-1, 1)^k \times 0^{n-k}$.
+		
+		Тогда $T_{\varphi(a)}(M) = d\varphi(A)\left< \mbb R^k \times 0^{n-k}\right>$.
+	\end{statement}	
+	\begin{corollary}
+		Если $M$ -- гладкое $k$-мерное многообразие, то $T_a(M)$, где $a \in M$ -- линейное $k$-мерное подпространство.
+	\end{corollary}
+	\subsection{Нормальное подпространство к многообразию}
+	\begin{mdef}
+		Пусть $M$ -- некоторое множество.
+		
+		Вектор $\vec w$ -- нормаль к $M$ в точке $a\in M$, если 
+		$\forall \vec v \in T_a(M)$ верно, что
+		$$
+			\left< \vec w, \vec v \right> =0.
+		$$
+		
+		Совокупность всех таких нормалей обозначим $N_a(M)$. 
+		
+		Очевидно, что $N_a(M)$ -- линейное подпространство.
+	\end{mdef}
+	\begin{mdef}
+		Пусть $f \colon U \to R$, $U \subset \mbb R^n$ -- открытое подмножество, $a \in U$. 
+		
+		Вектор $u$ -- градиент функции $f$ в точке $a$, если для любого $v$
+		$$
+			df(a)\left<v\right> = \left<u, v\right> 
+		$$
+	\end{mdef}
+	\begin{statement}
+		Пусть $M = \{x \mid f_{1}(x) = 0, \ldots f_{n-k}(x) =0\}$ -- $k$-мерное $\mcl C^r$ гладкое многообразие.
+		
+		И отображение 
+		$$
+			f(x) = \begin{pmatrix}
+				f_1(x)\\
+				\vdots\\
+				f_{n-k}(x)
+			\end{pmatrix}
+		$$ имеет постоянный ранг $\text{rank\,}f=n-k$.
+		
+		Тогда $\forall a\in M$ векторы $\text{grad\,}f_{1}(a), \ldots, \text{grad\,}f_{n-k}(a)$ -- базис $N_a(M)$. 
+	\end{statement}
+	
 	\section{Карты, атласы}
+	
+	\begin{mdef}
+		Пусть $\mcl X$ -- произвольное множество. Картой в $\mcl X$ называется пара ($U$, $h$), где $U$ -- подмножество в $\mbb R^n$, 
+		а $h$ -- отображение $U$, биективно отображающее $U$ на некоторое открытое множество в $\mbb R^n$.  
+	\end{mdef}
+
+	\begin{mdef}
+		Две карты $(U, h)$, $(V, k)$ называются пересекающимися, если $V \cap U \not= \varnothing$. 
+	\end{mdef}
+
+	\begin{mdef}
+		Пусть $(U, h)$ и $(V, k)$ -- две пересекающиеся карты в $\mcl X$.
+		
+		Карты $(U, h)$, $(V, k)$ называются согласованными, если они либо не пересекаются, либо
+		\begin{enumerate}
+			\item оба множества $h(W)$, $k(W)$, где $W= U \cap V$, открыты в $\mbb R^n$;
+			\item отображение
+			$$
+				\left( \left. k \right|_W \right) \circ \left( \left. h \right|_W \right)^{-1}\colon h(W) \to k(W)
+			$$
+			является диффеоморфизмом класса $\mcl C^r$, где $r \ge 0$.
+		\end{enumerate}
+	\end{mdef}
+
+	\begin{mdef}
+		Множество карт $\{ (U_\alpha, h_\alpha)\}$ называется атласом на $\mcl X$, если
+		\begin{enumerate}
+			\item любые две карты этого множества согласованы;
+			\item $$
+				\underset{\alpha}{\bigcup}U_\alpha = \mcl X.
+			$$
+		\end{enumerate}
+	\end{mdef}
+	
+	Для любого атласа $A$ обозначим за $A_{\max}$ множество всех карт, согласованных с каждой картой атласа $A$.
+	
+	\begin{theorem}
+		Множество $A_{\max}$ -- атлас.
+	\end{theorem}
+
+	\begin{corollary}
+		Каждый атлас $A$ содержится в единственном максимальном атласе $A_{\max}$.
+	\end{corollary}
+	\begin{Proof}
+		Если $A$, $B$ -- атласы и $A \subset B$, то $B_{\max} \subset A_{\max}$, поэтому $(A_{\max})_{\max} \subset A_{\max}$ и, значит, $(A_{\max})_{\max} = A_{\max}$.
+	Если $A_{\max} \subset B$, то $B_{\max}\subset (A_{\max})_{\max} = A_{\max}$, поэтому $B \subset A_{\max}$.
+	
+	То есть атлас $A_{\max}$ максимален в частино упорядоченном множестве всех атласов. И если $B$ -- произвольный максимальный атлас такой, что $A \subset B$, то $B \subset B_{\max} \subset A_{\max}$ и, значит, $B = A_{\max}$.
+	\end{Proof}
+	\begin{mdef}
+		Максимальные атласы на $\mcl X$ называются гладкими структурами. Множество $\mcl X$ с заданной на нем гладкой структурой $A_{\max}$ называется гладким многообразием, то есть гладкое многообразие -- пара $(\mcl X, A_{\max})$.
+	\end{mdef}
+
+	По определению два многообразия $(\mcl X, A_{\max})$ и $(\mcl Y, B_{\max})$ совпадают тогда и только тогда, когда $\mcl X = \mcl Y$ и $A_{\max} = B_{\max}$.
+	
+	\begin{mdef}
+		Два атласа называются эквивалентными, если они содержатся в одном и том же максимальном атласе. Для этого необходимо и достаточно того, что бы для атласов $A$, $B$ их объединение $A \cup B$ было атласом. 
+	\end{mdef}
+
+	Для задания многообразия достаточно задать произвольный атлас $A \subset A_{\max}$, то есть гладкими многообразиями считать пары $(\mcl X, A)$, где $A$ -- произвольный атлас на $\mcl X$.
+	
+	Два многообразия $(\mcl X, A_{\max})$ и $(\mcl Y, B_{\max})$ одинаковы тогда и только тогда, когда $\mcl X = \mcl Y$ и атласы $A$, $B$ эквивалентны.
+	
+	\begin{mdef}
+		Число $n$ -- размерность пространства $\mbb R^n$, содержащего образы $h(U)$ носителей карт, называется размерностью многообразия $\mcl X$ и обозначается $\dim \mcl X$.
+	\end{mdef}
+
+	\begin{mdef}
+		Число $r$ -- класс гладкости отображений $\left( \left. k \right|_W \right) \circ \left( \left. h \right|_W \right)^{-1}$ будем называть классом гладкости многообразия $\mcl X$.
+	\end{mdef}
+	
+	
