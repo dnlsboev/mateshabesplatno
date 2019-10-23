@@ -21,7 +21,14 @@
 			&\|x\|=0 \Leftrightarrow x = \vec 0. \tag{\text{Н.4}}
 		\end{align}
 	\end{mdef}
-	
+	\begin{example}
+		Примеры норм:
+		\begin{enumerate}
+			\item В пространстве $\mbb R^n$ введем норму $\|x\|_p = \left( \sum \limits_{k=1}^n |x_k|^p \right)^{\frac 1 p}$ и $\|x\|_{\infty} = \underset{1 \le i \le n}{\max}\{|x_i|\}$;
+			\item В пространстве $C[a,b]$ норма $\|f\|_{\infty} = \underset{x \in [a,b]}{\sup}\{|f(x)|\}$ и $\|f\|_{C[a,b]} = \int\limits_a^b |f|dx$.
+			\item В пространстве ограниченных последовательностей $\{x_n\}$ определим норму $\|x\|_{\infty} = \underset{n \in \mbb N}{\sup}\{|x_n|\}$, где $x$ -- последовательность $\{x_n\}$.		
+		\end{enumerate}
+	\end{example}
 	\begin{remark}
 		На нормированном в. п-ве можно определить метрику следующим образом:
 		$$
@@ -66,6 +73,20 @@
 	\begin{theorem}
 		Все нормы в $\mbb R ^n$ билипшицево эквивалентны.
 	\end{theorem}
+	\begin{Proof}
+		Докажем, что любая норма $f$ билипшицево эквивалентна $\|\cdot\|_2$.
+		
+		\begin{multline*}
+			f(x) = f\left(\sum\limits_{k=1}^n x_k e_k\right) \le \sum\limits_{k=1}^n |x_k| f(e_k) \underset{\text{Н-во К-Б-Ш}}{\le}\\ 
+			\underset{\text{Н-во К-Б-Ш}}{\le}\left(\sum\limits_{k=1}^n |x_k|^2 \right)^{\frac 1 2} \left( \sum\limits_{k=1}^n f(e_k) ^ 2 \right)^{\frac 1 2} = C_1 \|x\|_2.
+		\end{multline*}
+		
+		Обратим неравенство.
+		
+		$$
+			f(x) = f\left(\frac {\|x\|_2} {\|x\|_2} f\right) = {\|x\|_2} f\left(\frac 1 {\|x\|_2} f\right) \ge {\|x\|_2} \underset{\|\xi\|_2 = 1}{f(\xi)} = {\|x\|_2} C_2.
+		$$
+	\end{Proof}
 	\begin{corollary}
 		Последовательность точек
 		\begin{equation*}

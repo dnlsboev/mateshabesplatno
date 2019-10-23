@@ -134,6 +134,64 @@
 		\frac {\partial^2 u(M_0)} {\partial x \partial y} = \frac {\partial^2 u(M_0)} {\partial y \partial x}.
 		$$
 	\end{theorem}
+	\begin{Proof}
+		По условию функция $u$ дважды дифференцируема, следовательно, $u'_x, u'_y$ определены в некоторой окрестности точки $M_0$ и сами являются дифференцируемыми.
+		
+		Рассмотрим функцию одной переменной 
+		$$
+		\Phi(h) = f(x_0+h, y_0+h)-f(x_0+h, y_0)-f(x_0, y_0+h)+f(x_0, y_0)
+		$$ 
+		и $\varphi(x) = f(x, y_0+h)-f(x, y_0)$.
+		Тогда нетрудно проверить, что 
+		\begin{equation}\label{delta phi}
+		\Delta\varphi(x_0) = \varphi(x_0+h) - \varphi(x_0) = \Phi(h).
+		\end{equation}
+		
+		Сама функция $\varphi(x)$ является дифференцируемой в некоторой окрестности $x_0$, так как исходная функция $f(x, y)$ является дифференцируемой (здесь можно совсем формализовать эти рассуждения и воспользоваться существованием производной $u'_x$ и определением дифференцирумой функции одной переменной).
+		
+		Мы можем применить теорему Лагранжа и получить
+		\begin{equation}\label{Lagranz}
+		\Delta \varphi(x_0) = \varphi'(x_0+\theta h)h = (f'_x(x_0+\theta h, y_0+h) - f'_x(x_0+\theta h, y_0))h, 
+		\end{equation}
+		где $\theta \in [0, 1]$.
+		
+		Преобразуем выражение (\ref{Lagranz}) далее:
+		\begin{multline*}
+		\left(f'_x(x_0+\theta h, y_0+h) - f'_x(x_0+\theta h, y_0)\right)h =\\
+		= (f'_x(x_0+\theta h, y_0+h) - f'_x(x_0+\theta h, y_0) + f'_x(x_0, y_0) - f'_x(x_0, y_0))h =\\
+		= (f'_x(x_0+\theta h, y_0+h) - f'_x(x_0, y_0))h -(f'_x(x_0+\theta h, y_0) - f'_x(x_0, y_0))h.
+		\end{multline*}
+		
+		Рассмотрим $f'_x(x_0+\theta h, y_0+h) - f'_x(x_0, y_0)$. Так как функция $f'_x$ дифференцируема в точке $M_0$, то
+		$$
+		f'_x(x_0+\theta h, y_0+h) - f'_x(x_0, y_0) = f''_{xx}(M_0)\theta h + f''_{yx}(M_0)h + \alpha_1 \cdot \theta h + \beta_1  \cdot h,
+		$$
+		где $\alpha_1 = o(1)$ и $\beta_1 = o(1)$ при $h\to0$.
+		
+		Аналогично рассматриваем $f'_x(x_0+\theta h, y_0) - f'_x(x_0, y_0)$. 
+		$$
+		f'_x(x_0+\theta h, y_0) - f'_x(x_0, y_0) = f''_{xx}(M_0)\theta h + f''_{yx}(M_0)\cdot 0 + \alpha_2 \cdot \theta h,
+		$$
+		где $\alpha_2 = o(1)$ при $h\to 0$.
+		
+		Вернемся к равенству (\ref{delta phi}).
+		\begin{multline*}
+		\Phi = \Delta \varphi = (f''_{xx}(M_0)\theta h + f''_{yx}(M_0)h + \alpha_1 \cdot \theta h + \beta_1  \cdot h)h - \\
+		- (f''_{xx}(M_0)\theta h + \alpha_2 \cdot \theta h)h = f''_{yx}(M_0)h^2 + \gamma \cdot h^2,
+		\end{multline*}
+		где $\gamma = o(1)$ при $h\to0$.
+		
+		Теперь проделаем точно такие же действия для функции одной переменной
+		$$
+		\psi(y) = f(x_0+h, y)-f(x_0, y).
+		$$
+		То есть, если в $\varphi(x)$ мы фиксировали вторую переменную ($y_0+h$ и $y_0$), то сейчас мы фиксируем первую.
+		
+		Получим следующее:
+		$$
+		\Phi = f''_{xy}(M_0)+\xi \cdot h^2 = f''_{yx}(M_0)h^2 + \gamma \cdot h^2 \underset{h\to0}{\longrightarrow} f''_{xy}(M_0) = f''_{xy}(M_0).
+		$$
+	\end{Proof}
 
 	\begin{theorem}
 		Пусть $f\colon U \to \mbb R^2$ в некоторой окрестности точки $M_0 = (x_0, y_0)$ имеет частные производные $f'_x, f'_y$, $f''_{xy}, f''_{yx}$ и при этом вторые производные непрерывны в $M_0$.
@@ -142,6 +200,31 @@
 		f''_{xy}(M_0) = f''_{yx}(M_0).
 		$$
 	\end{theorem}
+	\begin{Proof}
+		Пусть $\Phi, \varphi, \psi$ те же самые функции, что в доказательстве теоремы \ref{th1}.
+		
+		Тогда 
+		$$
+		\Phi = \Delta\varphi = \varphi'(x_0+\theta h)h = (f'_x(x_0+\theta h, y_0+h) - f'_x(x_0+\theta h, y_0))h.
+		$$
+		
+		В последнем выражении можно воспользоваться теоремой Лагранжа (по переменной $y$) и получить:
+		$$
+		\Phi = f''_{yx}(x_0 + \theta h, y_0 + \xi h)h^2,
+		$$
+		где $\theta, \xi \in [0,1]$.
+		
+		Аналогично, рассматривая функцию $\psi$ получаем
+		$$
+		\Phi = \Delta\psi = f''_{xy}(x_0+\eta h, y_0 + \zeta h)h^2,
+		$$
+		где $\eta, \zeta \in [0,1]$.
+		
+		При $h\to 0$ имеем 
+		$$
+		f''_{xy}(M_0) = f''_{yx}(M_0).
+		$$
+	\end{Proof}
 
 	\begin{corollary}
 		Пусть $u = f(x_1, \ldots, x_n)$ -- $m$-раз дифференцируемая функция в точке $M_0$, при этом $M_0 = (x_1^0, \ldots, x_n^0)$.
@@ -151,6 +234,12 @@
 		$$
 		где $\pi, \sigma \in \mbb S_k$ такие, что $\pi \not= \sigma$.
 	\end{corollary}
+	\begin{Proof}
+		Достаточно заметить, что любую смешанную производную, меняя порядок дифференцирования по двум <<соседним>> переменным, можно перевести в смешанную производную с другим порядком дифференцирования. А возможность совершения таких действий обеспечивается теоремой \ref{th1}:
+		$$
+		\frac {\partial^k f(M_0)} {\partial x_{\pi(1)} \ldots (\partial x_{\pi(i)} \partial x_{\pi(i+1)}) \ldots \partial x_{\pi(k)}} = \frac {\partial^k f(M_0)} {\partial x_{\pi(1)} \ldots (\partial x_{\pi(i+1)} \partial x_{\pi(i)}) \ldots \partial x_{\pi(k)}}
+		$$
+	\end{Proof}
 	\section{Формула Тейлора}
 	\begin{mdef}
 		Определим понятие мультииндекса.
@@ -208,6 +297,34 @@
 		
 		где $o(\|h\|^k) \to 0$ при $\|h\|\to 0$.
 	\end{theorem}
+	\begin{Proof}
+		Доказательство будем проводить индукцией по $k$.
+		
+		База индукции. $k=1$ -- определение дифференцируемой функции.
+		
+		Шаг индукции. $k \Rightarrow k+1$. 
+		
+		Рассмотрим функцию $$\psi(h) = f(a+h) - \sum\limits_{i=0}^k \left( \sum\limits_{|\alpha|=i} \cfrac {1}{\alpha!}  \cfrac {\partial^\alpha f(a)}{\partial x^\alpha} h^\alpha\right).$$
+		
+		Ее производная по $h_j$ выглядит следующим образом:
+		$$
+			\cfrac {\partial \psi(h)} {\partial x_j} = \cfrac {\partial f} {\partial x_j} + \sum\limits_{i=0}^{k-1} \left( \sum\limits_{|\beta|=i} \cfrac {1}{\beta!}  \cfrac {\partial^\beta }{\partial x^\beta} \cfrac {\partial f(a)}{\partial x_j} h^\beta\right)
+		$$
+		
+		При этом верно разложение $\alpha = \beta + \delta_{ij}$, где $\delta_{ij} = (0, \dots, \underset{j}{1}, \dots, 0)$ и $|\beta| = k-1$.
+		
+		По предположению индукции, $\cfrac {\partial \psi(h)} {\partial x_j} = o(\|h\|^{k-1})$.
+		
+		По лемме о приращении, имеем
+		$$
+			|\psi(h)-\psi(0)\| \le o(\|h\|^{k-1})\|h\|.
+		$$
+		
+		Следовательно, $\psi(h) - \psi(0) = o(\|h\|^k)$, значит, 
+		$$
+			f(a+h) = \sum\limits_{i=0}^k \left( \sum\limits_{|\alpha|=i} \cfrac {1}{\alpha!}  \cfrac {\partial^\alpha f(a)}{\partial x^\alpha} h^\alpha\right) + o(\|h\|^k)
+		$$
+	\end{Proof}
 
 	\begin{mdef}
 		$
@@ -312,10 +429,159 @@
 			\item $df(x) = - (dF_x(y))^{-1}dF_y(x)$, где $y = f(x)$.
 		\end{enumerate}
 	\end{theorem}	
+	\begin{Proof}
+		Обозначим $A = dF_a(b)$ и определим отображение $G_x(y) = y - A^{-1}F(x,y)$, $G_x\colon U_x \to \mbb R^m$, где $U_x = \{y\mid (x,y)\in U\}$. Проверим, что $G_x(y) = y \Leftrightarrow F(x,y) = 0$.
+		\begin{equation}\label{nepodvizh}
+		G_x(y) = y - A^{-1}F(x,y) =y \Leftrightarrow A^{-1}F(x,y) = 0 \Leftrightarrow F(x,y) = 0.
+		\end{equation}
+		
+		Но подождите, а что за странная функция $G_x(y)$? Попробуем понять, как можно не заучивать это все дело. Смотрим <<за руками>>.
+		
+		Пусть функция $y=y(x)$ такая, что $F(x, y(x)) \equiv 0$. Тогда
+		\begin{multline*}
+		Ay(x) \equiv Ay(x) \Leftrightarrow Ay(x) - F(x, y(x)) \equiv Ay(x) \Leftrightarrow\\
+		\Leftrightarrow A^{-1}(Ay(x) - F(x, y(x)) ) \equiv y(x)\ (\text{так как $A$ -- невырожден})\Leftrightarrow\\
+		\Leftrightarrow y - A^{-1}F(x,y) \equiv y(x).
+		\end{multline*}
+		
+		Теперь чуть понятнее откуда эта $G_x(y)$ берется, я надеюсь. Продолжаем.
+		
+		Мы хотим доказать, что найдутся $\delta_1 > 0$, $\delta_2 > 0$ такие, что при $\|x-a\|\le\delta_1$ отображение $G_x(y)$ является сжимающим на $\|y-b\|\le\delta_2$.
+		
+		Возьмем дифференциал от $G_x(y)$.
+		$$
+		dG_x(y) = d(y - A^{-1}F(x,y)) = E - A^{-1}dF(x,y).
+		$$
+		
+		%Так как исходная функция $F$ была класса $\mcl C^1$, в точке $(a,b)$, то и $G_x(y) \in \mcl C^1(b)$. 
+		
+		Из непрерывности производных $F$ следует, что для любого $\varepsilon > 0$ найдутся $\delta_1, \delta_2 > 0$ такие, что $dF_x(y) = dF_a(b) + B_x(y)$, где $\|B_x(y)\|<\varepsilon$ при $\|x-a\|_1 \le \delta_1$ и $\|y-b\|_1 \le \delta_2$. Как это понимать? Если мы достаточно близки к точке $(a, b)$, то, по непрерывности, $dF_x(y)$ <<приближается>> к $dF_a(b)$.
+		Тогда 
+		\begin{multline*}
+		\|dG_x(y)\|= \|E - A^{-1}dF(x,y)\| = \|A^{-1}(A - dF(x,y))\| \le\\
+		\le \|A^{-1}\|\|A - dF(x,y)\| = \|A^{-1}\|\|B_x(y)\|.
+		\end{multline*}
+		
+		Можно выбрать $\varepsilon > 0$ (от которого строится оценка на норму $B_x(y)$) так, что все частные производные $G_x(y)$ не превышали $\frac 1 2$ при $\|x-a\|_1 \le \delta_1$ и $\|y-b\|_1 \le \delta_2$.
+		
+		По лемме о приращении имеем, что $\|G_x(y)-G_x(z)\|_1\le \frac 1 2 \|y-z\|_1$ для всех $\|y-b\|_1 \le \delta_2$ и $\|z-b\|_1 \le \delta_2$
+		
+		Кроме того, мы имеем 
+		\begin{multline*}
+		\|G_x(y) - b\|_1 =  \|G_x(y)  - G_x(b) + G_x(b) - G_a(b)\|_1 \le \\
+		\le \|G_x(y)  - G_x(b)\|_1 + \|G_x(b) - G_a(b)\|_1 \le \\ 
+		\le \frac 1 2 \|y - b\|_1 + \sup\|G_x(b)-G_a(b)\|_1 = \frac 1 2 \|y - b\|_1 + r
+		\end{multline*}
+		
+		При этом 
+		\begin{multline*} r = \sup\|G_x(b)-G_a(b)\|_1 = \sup\| y - A^{-1}F(x,b) - y + A^{-1}F(a,b)\|_1 =\\
+		= \sup \|A^{-1}(F(x,b) - F(a,b))\|_1 \le \|A^{-1}\|\|B_x(y)\|
+		\end{multline*}
+		при $\|x-a\|_1 \le \delta_1$.
+		
+		А теперь мы найдем столь малый $\delta_2 > 0$, что $r < \frac {\delta_2} 2$. Обозначим эту окрестность точки $a$ за $V$. Тогда каждая функция $G_x$ при $x\in V$  переводит множество $W = \{y \mid \|y-b\|_1 \le \delta_2\}$ в себя.
+		
+		Очень важно то, что знак неравенства в окрестностях -- нестрогий, иначе бы наша окрестность точки $y$ была неполной, так как она не компактна, и мы бы не смогли применить теорему о неподвижной точке.
+		
+		Мы проверили, что $G_x$ явлется сжимающим отображением на $W$, тогда, по теореме о неподвижной точке, для каждого $x\in V$ найдется единственная точка $z_x\in W$ такая, что $G_x(z) = z_x$. Если кому-то непонятно, почему неподвижная точка -- то, что нам требуется, то посмотрите (\ref{nepodvizh}).
+		
+		Определим $f(x) = z_x$. Этим мы доказали существование неявной функции.
+		
+		\textbf{Докажем непрерывность неявной функции.}
+		
+		Рассмотрим произвольную точку $(x_0, y_0)\in V\times W$ ($x_0\in V, y_0\in W$). 
+		Так как $dF_a(b)$ -- невырожденный оператор из $\mbb R^m$ в $\mbb R^m$, то его определитель не равен нулю, а определитель 
+		$\left(\det A = \sum\limits_{\pi \in \mbb S_m}\text{sgn}(\pi)\prod\limits_{i=1}^{m}a_{i, \pi(i)}\right)$ -- непрерывная функция от элементов матрицы, то в некоторой окрестности точки $(a,b)$ оператор $dF_{x_0}(y_0)$ так же является невырожденным, так как, по условию \ref{cond1}) теоремы, $F\in \mcl C^1[(x_0, y_0)]$.
+		
+		Можем считать, что $V\times W$ входит в эту окрестность (если не входит, то уменьшим $\delta_1, \delta_2$).
+		
+		Итого, можем сделать так:
+		\begin{multline*}
+		F(x,y) - F(x_0, y_0) = dF(x_0, y_0)\left< x-x_0, y - y_0\right> + o(\|x-x_0\|_1 + \|y-y_0\|_1) =\\
+		=dF_{x_0}(y_0)\left< y-y_0\right> + dF_{y_0}(x_0)\left< x-x_0\right> + \alpha(x,y)(\|x-x_0\|_1 + \|y-y_0\|_1),
+		\end{multline*}
+		где $\alpha(x,y)\to0$ при $x\to x_0$ и $y\to y_0$.
+		
+		Пусть $y=f(x)$ и $y_0 = f(x_0)$.
+		Тогда
+		\begin{multline*}
+		F(x, f(x)) - F(x_0, f(x_0)) = 0 = dF_{x_0}(y_0)\left< f(x)-f(x_0)\right> +\\
+		+ dF_{y_0}(x_0)\left< x-x_0\right> + \alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1).
+		\end{multline*}
+		
+		Применим обратную матрицу $(dF_{x_0}(y_0))^{-1}$ к равенству.
+		
+		\begin{multline*}
+		0 = \left< y-y_0\right> + (dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> + \\
+		+(dF_{x_0}(y_0))^{-1}\alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1)\Rightarrow\\
+		\Rightarrow f(x)-f(x_0) = -(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> -\\
+		- (dF_{x_0}(y_0))^{-1}\alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1).
+		\end{multline*}
+		
+		Оценим $f(x)-f(x_0)$ по норме (мы же хотим доказать непрерывность $f$).
+		\begin{multline*}
+		\| f(x)-f(x_0) \|_1 = \|-(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> - \\
+		-(dF_{x_0}(y_0))^{-1}\alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1) \|_1 \le \\
+		\le \|(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> \|_1 + \\
+		+\|(dF_{x_0}(y_0))^{-1}\alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1) \|_1 \le \\
+		\le \|(dF_{x_0}(y_0))^{-1}\|_1\|dF_{y_0}(x_0)\left< x-x_0\right> \|_1 + \\
+		+\|(dF_{x_0}(y_0))^{-1}\|_1\|\alpha(x,y)\|_1(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1) 
+		\end{multline*}
+		
+		Так как $\alpha(x,y)\to0$ при $x\to x_0$ и $y\to y_0$, то в найдется малая окрестность точки $(x_0, y_0)$ такая, что $$\|(dF_{x_0}(y_0))^{-1}\|_1\|\alpha(x,y)\|_1 < \frac 1 2$$ и, значит, 
+		$ \frac 1 2 \|f(x)-f(x_0)\|_1 < C \|x-x_0\|_1$, то есть функция непрерывна (мы доказали, что функция непрерывна в $x_0$, но $x_0$ -- произвольная точка $V$).
+		
+		Теперь \textbf{остается доказать дифференцируемость}. Последний пункт теоремы, а потом ч.т.д., как говорится.
+		
+		Смотрим внимательно сюда.
+		\begin{multline*}
+		f(x)-f(x_0) = -(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> - \\
+		-(dF_{x_0}(y_0))^{-1}\alpha(x,y)(\|x-x_0\|_1 + \|f(x)-f(x_0)\|_1)
+		\end{multline*}
+		Положим $\beta(x,y) = -(dF_{x_0}(y_0))^{-1}\alpha(x,y) \|f(x)-f(x_0)\|_1$, при этом $$\|\beta(x,y)\|_1 \le C \|(dF_{x_0}(y_0))^{-1} \|_1\|\alpha(x,y)\|_1\|x-x_0\| \le K \|x-x_0\|_1$$.
+		
+		То есть
+		\begin{multline*}
+		f(x)-f(x_0) = -(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)\left< x-x_0\right> -\\
+		- (dF_{x_0}(y_0))^{-1}\alpha(x,y)\|x-x_0\|_1 + \beta(x,y).
+		\end{multline*}
+		
+		Функция $f$ дифференцируема и $df(x_0) = -(dF_{x_0}(y_0))^{-1}dF_{y_0}(x_0)$.
+	\end{Proof}
 
 	\begin{corollary}[О гладкости неявной функции]
 		Если при выполнении условий теоремы о неявной функции потребовать, что бы $F\in\mcl C^r[(a,b)]$, то и неявная функция $f$ будет принадлежать классу $\mcl C^r$ в области определения $V$.
 	\end{corollary}
+	\begin{Proof}
+		Пусть $y=f(x)$ -- неявная функция такая, что $F(x, y) = 0$. 
+		
+		База индукции. $r=1$ -- утверждение теоремы о неявной функции.
+		
+		Шаг индукции. $r\Rightarrow r+1$.
+		
+		Предполагается, что $F \in \mcl C^{r+1} [(a,b)]$ и $f \in \mcl C^r[(a)]$.
+		
+		Покажем рассуждения для второй производной -- последующие аналогично, но вычислений больше. 
+		
+		Исходя из формулы дифференциала неявной функции, мы имеем:
+		$$
+			\cfrac {\partial F} {\partial x} + \cfrac {\partial F} {\partial y} \cfrac {\partial y} {\partial x} = 0.
+		$$
+		
+		Отсюда, 
+		$$
+			\cfrac {\partial y} {\partial x} = - \left(\cfrac {\partial F} {\partial y}\right)^{-1}\cfrac {\partial F} {\partial x}
+		$$
+		
+		Продифференцируем по $x$ еще раз.
+		$$
+			\cfrac {\partial^2 y} {\partial x^2} = - \left(\cfrac {\partial F} {\partial y}\right)^{-1}\left( \cfrac {\partial^2 F} {\partial x^2} + \cfrac {\partial^2 F} {\partial y \partial x}\right) + \left(\cfrac {\partial F} {\partial y}\right)^{-2} \left( \cfrac {\partial^2 F} {\partial y \partial x} + \cfrac {\partial^2 F} {\partial y^2} \cfrac {\partial y} {\partial x}\right)
+		$$
+		
+		Из этого равенства можно выразить $\cfrac {\partial^2 y} {\partial x^2}$, которая будет зависеть от второй производной $F$ и $\cfrac {\partial y} {\partial x}$, которые непрерывны по предположению. 
+		
+		Мы можем продолжать так выражать $k$-ые производные, где $k \le r+1$, которые будут зависеть он непрерывных функций, следовательно, сами будут непрерывны.
+	\end{Proof}
 
 	\begin{corollary}[Теорема об обратной функции]
 		Пусть $f\colon U \to \mbb R^n$, $U\subset \mbb R^n$, $U \in \mcl N (b)$, $b\in \mbb R^n$. 
@@ -327,7 +593,112 @@
 		\end{enumerate}
 		то найдется $V\in \mcl N(f(b))$, $V \subset \mbb R^n$ в которой определена обратная функция $f^{-1}\colon V \to U$ такая, что $f^{-1}\in \mcl D(V)$ и $df^{-1}(x) = (df(y))^{-1}$, где $x=f(y)$.
 	\end{corollary}
+	\begin{Proof}
+		Определим $F\colon \mbb R^n \times U \to \mbb R^n$ следующим образом: $F(x, y) = f(y) - x$. 
+		Данная функция удовлетворяет условия теоремы о неявной функции в окрестности точки $(a,b)$, где $b=f(a)$. 
+		
+		Значит, найдется окрестность $V$ точки $f(b)$, и $W$ точки $a$, и  функция $g\colon V \to W$ такая, что $F(x, g(x)) = 0$ для любого $x\in V$. То есть $f(g(x)) = x$, при этом $dg(x) = (df(y))^{-1}$.
+	\end{Proof}
 	
 	\section{Диффеоморфизмы}
+	
+	\begin{theorem}[Теорема о ранге]
+		Пусть $U \subset \mbb R^n$ -- некоторая окрестность точки $x_0$.
+		
+		Отображение $f\colon U \to \mbb R^m$ является $\mcl C^r$-гладким, где $r \ge 1$, и $\text{rank}\,f(x) = k$ для всех $x \in U$.
+		
+		Тогда найдутся окрестности $V \subset \mbb R^n$ точки $x_0$ и $W \subset \mbb R^m$ точки $y_0 = f(x_0)$ и $\mcl C^r$-диффеоморфизмы $\varphi\colon V \to \mbb R^n$ и $\psi\colon W \to \mbb R^m$ такие, что отображение $h = \psi \circ f \circ \varphi^{-1}$ в окрестности $\varphi(V)$ имеет вид
+		\begin{align}\label{theoremaORange}
+			\mbb R^n \ni u = (u_1, \dots, u_k, \dots, u_n) \overset{h}{\mapsto} (u_1, \dots, u_k, \underbrace{0, \dots, 0}_{m-k}) = v \in \mbb R^m.
+		\end{align}
+	\end{theorem}
+	\begin{Proof}
+		Мы хотим построить отображение $h$, которое действовало бы в точности, как указано в \ref{theoremaORange}.
+		
+		Отразим зависимости функций на следующей коммутативной диаграмме:
+		$$
+		\begin{CD}
+			\mbb R^n \supset U @>>{f}> W \subset \mbb R^m\\
+			@AA{\varphi^{-1}}A @VV{\psi}V\\
+			\mbb R^n \supset \varphi(V) @>>{h}> \mbb \psi(W) \subset \mbb R^m
+		\end{CD}
+		$$
+		
+		Введем следующее обозначение. 
+		\begin{align*}
+			&x^1 = (x_1, \dots, x_k)   	\quad  &y^1 = (y_1, \dots, y_k)\\
+			&x^2 = (x_{k+1}, \dots x_n) \quad  &y^2 = (y_{k+1}, \dots, y_m)
+		\end{align*}
+		Аналогично будут определяться функции, но там уже размеры <<второй составляющей>> будут зависеть от контекста.
+		
+		И тогда фунция $f(x_1, \dots, x_n)$ будет представима в следующим виде:
+		$$
+			f(x_1, \dots, x_n) = \begin{pmatrix}
+				f^1(x^1, x^2)\\
+				f^2(x^2, x^2)
+			\end{pmatrix}.
+		$$
+		
+		Можем считать, что невырожденный минор размера $k\times k$ расположен в левом верхнем углу матрицы Якоби отображения $f$. Рассмотрим матрицу Якоби\footnote{Обозначение $\partial_{x^1} f^1$ подразумевает матрицу размера $k\times k$ вида $\left(\cfrac {\partial f_i} {\partial x_j}\right)_{\substack{i = 1, \dots, k\\ j = 1\dots k}}$. Аналогично определяются $\partial_{x^2} f^1, \partial_{x^1} f^2, \partial_{x^2} f^2$}:
+		$$
+			\mcl J_f = \begin{pmatrix}
+				&\partial_{x^1} f^1 &\partial_{x^2} f^1\\
+				&\partial_{x^1} f^2 &\partial_{x^2} f^2
+			\end{pmatrix}
+		$$
+		
+		Матрица $\partial_{x^1} f^1$ невырожденна. Рассмотрим отображение $\varphi$, задаваемое, следующим образом:
+		\begin{align*}
+			&\varphi^1(x^1, x^2) = f^1(x^1, x^2)\\
+			&\varphi^2(x^1, x^2) = x^2.
+		\end{align*}
+		
+		Рассмотрим матрицу Якоби этого отображения.
+		$$
+			\mcl J_{\varphi} = \begin{pmatrix}
+				&\partial_{x^1} f^1 &\partial_{x^2} f^1\\
+				&0 & E
+			\end{pmatrix}
+		$$
+		Данная матрица невырождена и ее ранг равен $n$. По теореме о диффеоморфизмах, функция $\varphi$ -- $\mcl C^r$-гладкий диффеоморфизм в некоторой окрестности $V$ точки $x_0$ (мы пересекаем $U$ и $V$, чтобы получить итоговую окрестность, которая указана в формулировке) и определено обратное отображение 
+		$$\varphi^{-1}\colon \varphi(V) \to V.$$
+		
+		Рассмотрим отображение $g\colon \varphi(V) \to f(U)$, определяемую следующим образом: $g= f \circ \varphi^{-1}$. Ранг данного отображения не больше, чем $k$.
+		При этом
+		\begin{align*}
+		&g^1(u^1, u^2) = u^1\\
+		&g^2(u^1, u^2) = g(u^1, u^2),
+		\end{align*} при этом мы обозначаем вторую <<составляющую>> функции $g$ за $g$, так как первая часть -- тождественное отображение (надеюсь, это не вызовет путаницы).
+		
+		Рассмотрим матрицу Якоби отображения $g$.
+		$$
+			\mcl J_g = \begin{pmatrix}
+				& E & 0\\
+				& \partial_{u^1} g & \partial_{u^2} g
+			\end{pmatrix}
+		$$
+		Из этого получаем, что $\partial_{u^2} g = 0$ (иначе могли бы получить матрицу ранга выше, чем $k$ -- противоречие). И можем считать, что $g = g(u^1)$, так как $\partial_{u^2} g = 0$.
+		
+		Определим отображение $\psi$ следующим образом:
+		\begin{align*}
+			&\psi^1(y^1, y^2) = y^1\\
+			&\psi^2(y^1, y^2) = y^2 - g(y^1).
+		\end{align*}
+		
+		Опять же рассмотрим матрицу Якоби отображения $\psi$:
+		$$
+			\mcl J_{\psi} = \begin{pmatrix}
+				& E & 0\\
+				&-\partial_{y^1} g & E
+			\end{pmatrix}
+		$$
+		Якобиан $\psi$ равен $1$, следовательно, $\psi$ -- $\mcl C^r$-гладкий диффеоморфизм в некоторой окрестности $W$ (которую мы опять же пересечем с $f(U)$).
+		
+		Теперь мы можем составить требуемое отображение $h = \psi \circ f \circ \varphi^{-1}$. При этом
+		\begin{align*}
+		&h^1(u^1, u^2) = \psi^1 \circ f^1 \varphi^{-1} = \psi^1 \circ y^1 = y^1\\
+		&h^2(u^1, u^2) = \psi^2 \circ f^2 \circ \varphi^{-1} = \psi^2 \circ g(u^1) = g(u^1) - g(u^1) = 0.
+		\end{align*}
+	\end{Proof}
 	
 	\section{Условные экстремумы} 
